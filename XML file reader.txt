@@ -1,0 +1,53 @@
+Java code
+----------------------------------------------
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.File;
+
+public class XmlReader {
+
+    
+    public static void main(String[] args) {
+      
+try {
+
+	File xmlFile = new File("C:\\Users\\Yasas Weerasinghe\\Documents\\xmlReader//config.xml");
+	DocumentBuilderFactory dbCreater = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dCreater = dbCreater.newDocumentBuilder();
+	Document doc = dCreater.parse(xmlFile);
+
+	NodeList xmlNList = doc.getElementsByTagName("AA");
+
+	for (int i = 0; i < xmlNList.getLength(); i++) {
+
+		Node xmlNode = xmlNList.item(i);
+
+		if (xmlNode.getNodeType() == Node.ELEMENT_NODE) {
+
+			Element xmlE = (Element) xmlNode;
+
+			System.out.println(xmlE.getElementsByTagName("p").item(0).getTextContent());
+
+		}
+	}
+    } catch (Exception e) {
+	e.printStackTrace();
+    }
+  }
+
+}
+
+---------------------------------------------------------
+xml code
+---------------------------------------------------------
+
+<?xml version="1.0"?>
+	<AA>
+		<p>Hello World</p>
+	</AA>
+	
